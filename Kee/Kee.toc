@@ -1,0 +1,11 @@
+## Interface: 40300
+## Title : kee
+## Notes: Addon for Kee
+## Author: michaelritsema@gmail.coom
+## Version: 1.0
+## Dependencies: 
+## SavedVariablesPerCharacter: NewAddonPrefs
+
+Kee.lua
+KeeMacros.lua
+
