@@ -6,19 +6,25 @@ Kee.Priest = {}
 Kee.Priest.Macros = {}
 Kee.Shaman = {}
 Kee.Shaman.Macros = {}
+Kee.Warlock= {}
+Kee.Warlock.Macros = {}
 
 --CreateMacro(name, icon, macro_string, macro_type);
 
 -- variables used 
 -- LEADER_NAME: Multibox Leader, usually the human screen
-
-local addMacro = function (macro_table,name,icon,macro_string,macro_type) 
+-- feature name checks for the true value of a setting
+local addMacro = function (macro_table,name,icon,macro_string,macro_type,feature)
+    if not feature then
+        feature=false
+    end
     table.insert(macro_table, 
     {
         name=name,
         icon=icon,
         macro_string=macro_string,
-        macro_type=macro_type
+        macro_type=macro_type,
+        feature=feature
     }
     );
 end
@@ -78,6 +84,54 @@ addMacro(Kee.Shaman.Macros,
 
 );
 
+addMacro(Kee.Shaman.Macros,
+    "armor",
+    "INV_MISC_QUESTIONMARK",
+[[
+/cast Lightning Shield
+]],
+    1
+
+);
+
+addMacro(Kee.Shaman.Macros, "heal target", "INV_MISC_QUESTIONMARK", 
+[[
+/assist {{LEADER_NAME}}
+/cast Chain Heal
+]],
+1
+);
+
+addMacro(Kee.Shaman.Macros,
+    "smite",
+    "INV_MISC_QUESTIONMARK",
+[[
+/assist {{LEADER_NAME}}
+/castsequence reset=60 Tremor Totem, Windfury Totem, Mana Spring Totem,Searing Totem
+]],
+    1
+);
+
+addMacro(Kee.Shaman.Macros,
+    "shield leader",
+    "INV_MISC_QUESTIONMARK",
+[[
+/target {{LEADER_NAME}}
+/cast Earth Shield
+]],
+    1
+);
+
+addMacro(Kee.Shaman.Macros,
+    "shield target",
+    "INV_MISC_QUESTIONMARK",
+[[
+/assist {{LEADER_NAME}}
+/cast Earth Shield
+]],
+    1
+);
+
 addMacro(Kee.Account.Macros, "follow", "INV_MISC_QUESTIONMARK",
 [[
 /follow {{LEADER_NAME}}
@@ -130,4 +184,120 @@ addMacro(Kee.Account.Macros,
 /use Swift White Steed
 ]],
 nil
+);
+
+
+addMacro(Kee.Warlock.Macros,
+    "smite",
+    "INV_MISC_QUESTIONMARK",
+[[
+/assist {{LEADER_NAME}}
+/castsequence reset=target Corruption,Siphon Life,Unstable Affliction,Immolate
+]],
+    1
+);
+
+
+addMacro(Kee.Warlock.Macros,
+    "seed",
+    "INV_MISC_QUESTIONMARK",
+[[
+/assist {{LEADER_NAME}}
+/castsequence reset=target Corruption,Siphon Life,Unstable Affliction,Immolate
+]],
+    1
+);
+
+addMacro(Kee.Warlock.Macros,
+    "seed",
+    "INV_MISC_QUESTIONMARK",
+[[
+/assist {{LEADER_NAME}}
+/castsequence reset=target Corruption,Siphon Life,Unstable Affliction,Immolate
+]],
+    1
+);
+
+addMacro(Kee.Warlock.Macros,
+    "lifetap",
+    "INV_MISC_QUESTIONMARK",
+[[
+/cast Life Tap
+]],
+    1
+);
+
+addMacro(Kee.Warlock.Macros,
+    "shadowbolt",
+    "INV_MISC_QUESTIONMARK",
+[[
+/assist {{LEADER_NAME}}
+/cast Shadow Bolt
+]],
+    1
+);
+
+addMacro(Kee.Warlock.Macros,
+    "shadowburn",
+    "INV_MISC_QUESTIONMARK",
+[[
+/assist {{LEADER_NAME}}
+/cast Shadowburn
+]],
+    1
+);
+
+-- TODO: We need Curse of the Elements by highest lock only
+
+
+addMacro(Kee.Warlock.Macros,
+    "TT Cast",
+    "INV_MISC_QUESTIONMARK",
+[[
+/assist {{LEADER_NAME}}
+/cast Amplify Curse
+/cast Curse of Doom
+]],
+    1
+);
+
+addMacro(Kee.Warlock.Macros,
+    "curse",
+    "INV_MISC_QUESTIONMARK",
+[[
+/assist {{LEADER_NAME}}
+/cast Curse of Agony
+]],
+1,
+{
+    feature_name = "cote",
+    macro_string =
+[[
+/assist {{LEADER_NAME}}
+/cast Curse of the Elements
+]]
+}
+);
+
+
+
+
+addMacro(Kee.Warlock.Macros,
+    "drain soul",
+    "INV_MISC_QUESTIONMARK",
+[[
+/assist {{LEADER_NAME}}
+/cast Drain Soul
+]],
+    1
+);
+
+
+addMacro(Kee.Warlock.Macros,
+    "armor",
+    "INV_MISC_QUESTIONMARK",
+[[
+/cast Fel Armor
+]],
+    1
 );
