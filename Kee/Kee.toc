@@ -4,8 +4,7 @@
 ## Author: michaelritsema@gmail.coom
 ## Version: 1.0
 ## Dependencies: 
-## SavedVariablesPerCharacter: NewAddonPrefs
-
+## SavedVariablesPerCharacter: KeeSettings
 Kee.lua
 KeeMacros.lua
 

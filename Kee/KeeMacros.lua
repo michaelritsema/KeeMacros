@@ -14,7 +14,7 @@ Kee.Warlock.Macros = {}
 -- variables used 
 -- LEADER_NAME: Multibox Leader, usually the human screen
 -- feature name checks for the true value of a setting
-local addMacro = function (macro_table,name,icon,macro_string,macro_type,feature)
+local addMacro = function (macro_table,name,icon,macro_string,macro_type,feature) 
     if not feature then
         feature=false
     end
@@ -88,15 +88,25 @@ addMacro(Kee.Shaman.Macros,
     "armor",
     "INV_MISC_QUESTIONMARK",
 [[
-/cast Lightning Shield
+/cast Water Shield
 ]],
     1
 
 );
 
-addMacro(Kee.Shaman.Macros, "heal target", "INV_MISC_QUESTIONMARK", 
+addMacro(Kee.Shaman.Macros, "heal target", "INV_MISC_QUESTIONMARK",
 [[
 /assist {{LEADER_NAME}}
+/cast Chain Heal
+]],
+1
+);
+
+addMacro(Kee.Shaman.Macros, "ns heal target", "INV_MISC_QUESTIONMARK",
+[[
+/assist {{LEADER_NAME}}
+/p Instant chain heal on %t
+/cast Nature's Swiftness
 /cast Chain Heal
 ]],
 1
@@ -123,11 +133,32 @@ addMacro(Kee.Shaman.Macros,
 );
 
 addMacro(Kee.Shaman.Macros,
+    "flash",
+    "INV_MISC_QUESTIONMARK",
+[[
+/assist {{LEADER_NAME}}
+/cast Earth Shock(Rank 1)
+]],
+    1
+);
+
+
+addMacro(Kee.Shaman.Macros,
     "shield target",
     "INV_MISC_QUESTIONMARK",
 [[
 /assist {{LEADER_NAME}}
 /cast Earth Shield
+]],
+    1
+);
+
+addMacro(Kee.Shaman.Macros,
+    "shadowbolt",
+    "INV_MISC_QUESTIONMARK",
+[[
+/use 13
+/use 14
 ]],
     1
 );
@@ -182,10 +213,23 @@ addMacro(Kee.Account.Macros,
 [[
 #showtooltip
 /use Swift White Steed
+/use Great Green Elekk
+/use Swift White Mechanostrider
 ]],
 nil
 );
 
+addMacro(Kee.Account.Macros,
+"myfocus",
+"INV_MISC_QUESTIONMARK",
+[[
+#showtooltip
+/assist {{LEADER_NAME}}
+/focus
+/party Setting focus %f
+]],
+nil
+);
 
 addMacro(Kee.Warlock.Macros,
     "smite",
@@ -197,13 +241,24 @@ addMacro(Kee.Warlock.Macros,
     1
 );
 
+addMacro(Kee.Warlock.Macros,
+    "seduce",
+    "INV_MISC_QUESTIONMARK",
+[[
+/target focus
+/party Seducing %t
+/cast Seduction
+]],
+    1
+);
+
 
 addMacro(Kee.Warlock.Macros,
-    "seed",
+    "smite",
     "INV_MISC_QUESTIONMARK",
 [[
 /assist {{LEADER_NAME}}
-/castsequence reset=target Corruption,Siphon Life,Unstable Affliction,Immolate
+/castsequence reset=target Corruption,Unstable Affliction,Immolate,Siphon Life
 ]],
     1
 );
@@ -213,7 +268,7 @@ addMacro(Kee.Warlock.Macros,
     "INV_MISC_QUESTIONMARK",
 [[
 /assist {{LEADER_NAME}}
-/castsequence reset=target Corruption,Siphon Life,Unstable Affliction,Immolate
+/castsequence reset=target Corruption,Unstable Affliction,Immolate,Siphon Life
 ]],
     1
 );
@@ -232,6 +287,8 @@ addMacro(Kee.Warlock.Macros,
     "INV_MISC_QUESTIONMARK",
 [[
 /assist {{LEADER_NAME}}
+/use 13
+/use 14
 /cast Shadow Bolt
 ]],
     1
@@ -243,6 +300,16 @@ addMacro(Kee.Warlock.Macros,
 [[
 /assist {{LEADER_NAME}}
 /cast Shadowburn
+]],
+    1
+);
+-- currently fire damage
+addMacro(Kee.Warlock.Macros,
+    "death coil",
+    "INV_MISC_QUESTIONMARK",
+[[
+/assist {{LEADER_NAME}}
+/castsequence reset=15 Corruption,Immolate, Incinerate
 ]],
     1
 );
@@ -301,3 +368,5 @@ addMacro(Kee.Warlock.Macros,
 ]],
     1
 );
+
+-- TODO: spellsequence or code to round robin felguard charge/petattack ?
