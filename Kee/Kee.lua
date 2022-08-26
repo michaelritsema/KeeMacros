@@ -96,7 +96,7 @@ SlashCmdList.CHECKFEATURE= function(msg, editBox)
 	if KeeSettings.FEATURES[msg] then
 		fval=true;
 	end 
-	print(format("Feature %s is set to %s",msg,tostring(fval)));
+	print(format("Feature %s is set to %s.",msg,tostring(fval)));
 end
 
 -- Bindings don't seem to pick up the macros from the wtf file
@@ -107,4 +107,62 @@ SlashCmdList.BINDINGSPRINT = function(msg, editBox)
 	for i=1,GetNumBindings() do
 		print(GetBinding(i));
 	end
+end
+-- https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=f5d64f7f8f69c06ce0a50cb2ad2dd789
+-- We could have separate sets
+SLASH_KEEBINDINGS1 = "/keebindings"
+SlashCmdList.KEEBINDINGS=function(msg, editBox)
+	print("Updating Kee keybindings");
+	SetBinding("ALT-CTRL-A", "MACRO petattack");
+	SetBinding("ALT-CTRL-B", "MACRO ALTCTRLB");
+	SetBinding("ALT-CTRL-C", "MACRO ALTCTRLC");
+	SetBinding("ALT-CTRL-D", "MACRO petfollow");
+	SetBinding("ALT-CTRL-E", "MACRO ALTCTRLE");
+	SetBinding("ALT-CTRL-F", "MACRO ALTCTRLF");
+	SetBinding("ALT-CTRL-G", "MACRO ALTCTRLG");
+	SetBinding("ALT-CTRL-H", "MACRO ALTCTRLH");
+	SetBinding("ALT-CTRL-I", "MACRO ALTCTRLI");
+	SetBinding("ALT-CTRL-J", "MACRO ALTCTRLJ");
+	SetBinding("ALT-CTRL-K", "MACRO shadowbolt");
+	SetBinding("ALT-CTRL-L", "MACRO ALTCTRLL");
+	SetBinding("ALT-CTRL-M", "MACRO ALTCTRLM");
+	SetBinding("ALT-CTRL-N", "MACRO ALTCTRLN");
+	SetBinding("ALT-CTRL-O", "MACRO ALTCTRLO");
+	SetBinding("ALT-CTRL-P", "MACRO ALTCTRLP");
+	SetBinding("ALT-CTRL-Q", "MACRO ALTCTRLQ");
+	SetBinding("ALT-CTRL-R", "MACRO seed");
+	SetBinding("ALT-CTRL-S", "MACRO ALTCTRLS");
+	SetBinding("ALT-CTRL-T", "MACRO healleader");
+	SetBinding("ALT-CTRL-U", "MACRO ALTCTRLU");
+	SetBinding("ALT-CTRL-V", "MACRO ALTCTRLV");
+	SetBinding("ALT-CTRL-W", "MACRO ALTCTRLW");
+	SetBinding("ALT-CTRL-X", "MACRO ALTCTRLX");
+	SetBinding("ALT-CTRL-Y", "MACRO healtarget");
+	SetBinding("ALT-CTRL-Z", "MACRO ALTCTRLZ");
+	SetBinding("ALT-CTRL-SHIFT-A", "MACRO ALTCTRLSHIFTA");
+	SetBinding("ALT-CTRL-SHIFT-B", "MACRO ALTCTRLSHIFTB");
+	SetBinding("ALT-CTRL-SHIFT-C", "MACRO ALTCTRLSHIFTC");
+	SetBinding("ALT-CTRL-SHIFT-D", "MACRO ALTCTRLSHIFTD");
+	SetBinding("ALT-CTRL-SHIFT-E", "MACRO ALTCTRLSHIFTE");
+	SetBinding("ALT-CTRL-SHIFT-F", "MACRO ALTCTRLSHIFTF");
+	SetBinding("ALT-CTRL-SHIFT-G", "MACRO ALTCTRLSHIFTG");
+	SetBinding("ALT-CTRL-SHIFT-H", "MACRO ALTCTRLSHIFTH");
+	SetBinding("ALT-CTRL-SHIFT-I", "MACRO ALTCTRLSHIFTI");
+	SetBinding("ALT-CTRL-SHIFT-J", "MACRO ALTCTRLSHIFTJ");
+	SetBinding("ALT-CTRL-SHIFT-K", "MACRO ALTCTRLSHIFTK");
+	SetBinding("ALT-CTRL-SHIFT-L", "MACRO ALTCTRLSHIFTL");
+	SetBinding("ALT-CTRL-SHIFT-M", "MACRO ALTCTRLSHIFTM");
+	SetBinding("ALT-CTRL-SHIFT-N", "MACRO ALTCTRLSHIFTN");
+	SetBinding("ALT-CTRL-SHIFT-O", "MACRO ALTCTRLSHIFTO");
+	SetBinding("ALT-CTRL-SHIFT-P", "MACRO ALTCTRLSHIFTP");
+	SetBinding("ALT-CTRL-SHIFT-Q", "MACRO ALTCTRLSHIFTQ");
+	SetBinding("ALT-CTRL-SHIFT-R", "MACRO ALTCTRLSHIFTR");
+	SetBinding("ALT-CTRL-SHIFT-S", "MACRO ALTCTRLSHIFTS");
+	SetBinding("ALT-CTRL-SHIFT-T", "MACRO chainhealleader");
+	SetBinding("ALT-CTRL-SHIFT-U", "MACRO ALTCTRLSHIFTU");
+	SetBinding("ALT-CTRL-SHIFT-V", "MACRO ALTCTRLSHIFTV");
+	SetBinding("ALT-CTRL-SHIFT-W", "MACRO ALTCTRLSHIFTW");
+	SetBinding("ALT-CTRL-SHIFT-X", "MACRO ALTCTRLSHIFTX");
+	SetBinding("ALT-CTRL-SHIFT-Y", "MACRO chainhealtarget");
+	SetBinding("ALT-CTRL-SHIFT-Z", "MACRO ALTCTRLSHIFTZ");
 end

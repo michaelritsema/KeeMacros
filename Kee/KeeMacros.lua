@@ -8,6 +8,8 @@ Kee.Shaman = {}
 Kee.Shaman.Macros = {}
 Kee.Warlock= {}
 Kee.Warlock.Macros = {}
+Kee.Tests= {}
+Kee.Tests.Macros = {}
 
 --CreateMacro(name, icon, macro_string, macro_type);
 
@@ -28,150 +30,17 @@ local addMacro = function (macro_table,name,icon,macro_string,macro_type,feature
     }
     );
 end
-
-addMacro(Kee.Priest.Macros, "buff", "INV_MISC_QUESTIONMARK", 
-[[
-#showtooltip
-/assist {{LEADER_NAME}}
-/castsequence  Power Word: Fortitude
-]],
-1
-);
-
-addMacro(Kee.Priest.Macros, "cleanse", "INV_MISC_QUESTIONMARK", 
-[[
-#showtooltip
-/assist {{LEADER_NAME}}
-/cast Abolish Disease
-]],
-1
-);
-
-addMacro(Kee.Priest.Macros, "dispel", "INV_MISC_QUESTIONMARK", 
-[[
-#showtooltip
-/assist {{LEADER_NAME}}
-/cast Dispel Magic
-]],
-1
-);
-
-
-
-addMacro(Kee.Priest.Macros, "heal alt", "INV_MISC_QUESTIONMARK", 
-[[
-#showtooltip
-/castsequence [target=player] reset=15 Power Word: Shield, Heal
-]],
-1
-);
-
-
-addMacro(Kee.Priest.Macros, "heal leader", "INV_MISC_QUESTIONMARK", 
-[[
-/cast [target={{LEADER_NAME}}]Heal
-]],
-1
-);
-
-addMacro(Kee.Shaman.Macros,
-    "heal leader",
-    "INV_MISC_QUESTIONMARK",
-[[
-/cast [target={{LEADER_NAME}}]Healing Wave
-]],
-    1
-
-);
-
-addMacro(Kee.Shaman.Macros,
-    "armor",
-    "INV_MISC_QUESTIONMARK",
-[[
-/cast Water Shield
-]],
-    1
-
-);
-
-addMacro(Kee.Shaman.Macros, "heal target", "INV_MISC_QUESTIONMARK",
-[[
-/assist {{LEADER_NAME}}
-/cast Chain Heal
-]],
-1
-);
-
-addMacro(Kee.Shaman.Macros, "ns heal target", "INV_MISC_QUESTIONMARK",
-[[
-/assist {{LEADER_NAME}}
-/p Instant chain heal on %t
-/cast Nature's Swiftness
-/cast Chain Heal
-]],
-1
-);
-
-addMacro(Kee.Shaman.Macros,
-    "smite",
-    "INV_MISC_QUESTIONMARK",
-[[
-/assist {{LEADER_NAME}}
-/castsequence reset=60 Tremor Totem, Windfury Totem, Mana Spring Totem,Searing Totem
-]],
-    1
-);
-
-addMacro(Kee.Shaman.Macros,
-    "shield leader",
-    "INV_MISC_QUESTIONMARK",
-[[
-/target {{LEADER_NAME}}
-/cast Earth Shield
-]],
-    1
-);
-
-addMacro(Kee.Shaman.Macros,
-    "flash",
-    "INV_MISC_QUESTIONMARK",
-[[
-/assist {{LEADER_NAME}}
-/cast Earth Shock(Rank 1)
-]],
-    1
-);
-
-
-addMacro(Kee.Shaman.Macros,
-    "shield target",
-    "INV_MISC_QUESTIONMARK",
-[[
-/assist {{LEADER_NAME}}
-/cast Earth Shield
-]],
-    1
-);
-
-addMacro(Kee.Shaman.Macros,
-    "shadowbolt",
-    "INV_MISC_QUESTIONMARK",
-[[
-/use 13
-/use 14
-]],
-    1
-);
-
-addMacro(Kee.Account.Macros, "follow", "INV_MISC_QUESTIONMARK",
+--follow
+addMacro(Kee.Account.Macros, "ALTSHIFTBACKSLASH", "INV_MISC_QUESTIONMARK",
 [[
 /follow {{LEADER_NAME}}
 ]],
 nil
 );
 
+-- reload ui
 addMacro(Kee.Account.Macros,
- "reload ui",
+ "ALTSHIFTD",
    "INV_MISC_QUESTIONMARK",
 
 [[
@@ -196,6 +65,16 @@ addMacro(Kee.Account.Macros,
 
 addMacro(Kee.Account.Macros,
 
+  "ALTSHIFTQ",
+    "INV_MISC_QUESTIONMARK",
+[[
+/assist {{LEADER_NAME}}
+]],
+  nil
+);
+
+addMacro(Kee.Account.Macros,
+
  "petfollow",
   "INV_MISC_QUESTIONMARK",
 
@@ -203,6 +82,19 @@ addMacro(Kee.Account.Macros,
 #showtooltip
 /petfollow
 /petpassive
+]],
+  nil
+);
+
+--assist leader
+addMacro(Kee.Account.Macros,
+
+ "ALTSHIFTC",
+  "INV_MISC_QUESTIONMARK",
+
+[[
+#showtooltip
+/assist {{LEADER_NAME}}
 ]],
   nil
 );
@@ -231,6 +123,163 @@ addMacro(Kee.Account.Macros,
 nil
 );
 
+-- Heal Leader
+addMacro(Kee.Shaman.Macros,
+    "healleader",
+    "INV_MISC_QUESTIONMARK",
+[[
+/cast [target={{LEADER_NAME}}]Healing Wave
+]],
+    1
+
+);
+
+addMacro(Kee.Shaman.Macros,
+    "ALTSHIFTLEFTBRACKET",
+    "INV_MISC_QUESTIONMARK",
+[[
+/cast Lightning Shield
+]],
+    1
+
+);
+
+addMacro(Kee.Shaman.Macros,
+    "ALTSHIFTRIGHTBRACKET",
+    "INV_MISC_QUESTIONMARK",
+[[
+/cast Flametongue Weapon
+]],
+    1
+
+);
+
+addMacro(Kee.Shaman.Macros,
+    "ALTSHIFTX",
+    "INV_MISC_QUESTIONMARK",
+[[
+/cast Ghost Wolf
+]],
+    1
+
+);
+
+
+--Heal Target
+addMacro(Kee.Shaman.Macros, "ALTSHIFTY", "INV_MISC_QUESTIONMARK",
+[[
+/assist {{LEADER_NAME}}
+/cast Healing Wave
+]],
+1
+);
+
+addMacro(Kee.Shaman.Macros, "ns heal target", "INV_MISC_QUESTIONMARK",
+[[
+/assist {{LEADER_NAME}}
+/p Instant chain heal on %t
+/cast Nature's Swiftness
+/cast Chain Heal
+]],
+1
+);
+
+-- single spell for WOTLK
+addMacro(Kee.Shaman.Macros,
+    "ALTSHIFTB",
+    "INV_MISC_QUESTIONMARK",
+[[
+/assist {{LEADER_NAME}}
+/castsequence reset=combat Searing Totem
+]],
+    1
+);
+
+-- single spell for WOTLK
+addMacro(Kee.Shaman.Macros,
+    "ALTSHIFTN",
+    "INV_MISC_QUESTIONMARK",
+[[
+/assist {{LEADER_NAME}}
+/castsequence reset=combat Fire Nova Totem
+]],
+    1
+);
+
+addMacro(Kee.Shaman.Macros,
+    "shield leader",
+    "INV_MISC_QUESTIONMARK",
+[[
+/target {{LEADER_NAME}}
+/cast Earth Shield
+]],
+    1
+);
+
+addMacro(Kee.Shaman.Macros,
+    "chainhealleader",
+    "INV_MISC_QUESTIONMARK",
+[[
+/target {{LEADER_NAME}}
+/cast Chain Heal
+]],
+    1
+);
+
+addMacro(Kee.Shaman.Macros,
+    "ALTSHIFTZ",
+    "INV_MISC_QUESTIONMARK",
+[[
+/use Melon Juice
+]],
+    1
+);
+
+-- Lightning Bolt
+addMacro(Kee.Shaman.Macros,
+    "ALTSHIFTJ",
+    "INV_MISC_QUESTIONMARK",
+[[
+/assist {{LEADER_NAME}}
+/cast Lightning Bolt
+]],
+    1
+);
+
+--shock
+addMacro(Kee.Shaman.Macros,
+    "ALTSHIFTK",
+    "INV_MISC_QUESTIONMARK",
+[[
+/assist {{LEADER_NAME}}
+/cast Earth Shock
+]],
+    1
+);
+
+--flameshock
+addMacro(Kee.Shaman.Macros,
+    "ALTSHIFTW",
+    "INV_MISC_QUESTIONMARK",
+[[
+/assist {{LEADER_NAME}}
+/cast Flame Shock
+]],
+    1
+);
+
+--STARTATTACK
+addMacro(Kee.Shaman.Macros,
+    "ALTSHIFTF",
+    "INV_MISC_QUESTIONMARK",
+[[
+/assist {{LEADER_NAME}}
+/startattack
+]],
+    1
+);
+
+
 addMacro(Kee.Warlock.Macros,
     "smite",
     "INV_MISC_QUESTIONMARK",
@@ -258,23 +307,23 @@ addMacro(Kee.Warlock.Macros,
     "INV_MISC_QUESTIONMARK",
 [[
 /assist {{LEADER_NAME}}
-/castsequence reset=target Corruption,Unstable Affliction,Immolate,Siphon Life
+/castsequence reset=target Corruption,Immolate
 ]],
     1
 );
 
 addMacro(Kee.Warlock.Macros,
-    "seed",
+    "ALTSHIFTR",
     "INV_MISC_QUESTIONMARK",
 [[
 /assist {{LEADER_NAME}}
-/castsequence reset=target Corruption,Unstable Affliction,Immolate,Siphon Life
+/cast Seed of Corruption
 ]],
     1
 );
 
 addMacro(Kee.Warlock.Macros,
-    "lifetap",
+    "ALTSHIFTSEMICOLON",
     "INV_MISC_QUESTIONMARK",
 [[
 /cast Life Tap
@@ -283,7 +332,7 @@ addMacro(Kee.Warlock.Macros,
 );
 
 addMacro(Kee.Warlock.Macros,
-    "shadowbolt",
+    "ALTSHIFTK",
     "INV_MISC_QUESTIONMARK",
 [[
 /assist {{LEADER_NAME}}
@@ -294,15 +343,6 @@ addMacro(Kee.Warlock.Macros,
     1
 );
 
-addMacro(Kee.Warlock.Macros,
-    "shadowburn",
-    "INV_MISC_QUESTIONMARK",
-[[
-/assist {{LEADER_NAME}}
-/cast Shadowburn
-]],
-    1
-);
 -- currently fire damage
 addMacro(Kee.Warlock.Macros,
     "death coil",
@@ -346,9 +386,6 @@ addMacro(Kee.Warlock.Macros,
 }
 );
 
-
-
-
 addMacro(Kee.Warlock.Macros,
     "drain soul",
     "INV_MISC_QUESTIONMARK",
@@ -361,7 +398,7 @@ addMacro(Kee.Warlock.Macros,
 
 
 addMacro(Kee.Warlock.Macros,
-    "armor",
+    "ALTSHIFTZ",
     "INV_MISC_QUESTIONMARK",
 [[
 /cast Fel Armor
@@ -369,4 +406,6 @@ addMacro(Kee.Warlock.Macros,
     1
 );
 
--- TODO: spellsequence or code to round robin felguard charge/petattack ?
+addMacro(Kee.Tests.Macros,"A","INV_MISC_QUESTIONMARK",[[/run Fel print("A")]],1);
+
+--lua GetBindingKey("command") SetBinding("KEY", "command") SetBindingSpell("KEY", "Spell Name") SetBindingItem("KEY", "itemname") SetBindingMacro("KEY", "macroname"|macroid)
