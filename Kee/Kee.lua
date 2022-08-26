@@ -114,7 +114,7 @@ SLASH_KEEBINDINGS1 = "/keebindings"
 SlashCmdList.KEEBINDINGS=function(msg, editBox)
 	print("Updating Kee keybindings");
 	SetBinding("ALT-CTRL-A", "MACRO petattack");
-	SetBinding("ALT-CTRL-B", "MACRO ALTCTRLB");
+	SetBinding("ALT-CTRL-B", "MACRO totemset1");
 	SetBinding("ALT-CTRL-C", "MACRO ALTCTRLC");
 	SetBinding("ALT-CTRL-D", "MACRO petfollow");
 	SetBinding("ALT-CTRL-E", "MACRO ALTCTRLE");
@@ -133,12 +133,22 @@ SlashCmdList.KEEBINDINGS=function(msg, editBox)
 	SetBinding("ALT-CTRL-R", "MACRO seed");
 	SetBinding("ALT-CTRL-S", "MACRO ALTCTRLS");
 	SetBinding("ALT-CTRL-T", "MACRO healleader");
-	SetBinding("ALT-CTRL-U", "MACRO ALTCTRLU");
+	SetBinding("ALT-CTRL-U", "MACRO healtarget");
 	SetBinding("ALT-CTRL-V", "MACRO ALTCTRLV");
 	SetBinding("ALT-CTRL-W", "MACRO ALTCTRLW");
 	SetBinding("ALT-CTRL-X", "MACRO ALTCTRLX");
 	SetBinding("ALT-CTRL-Y", "MACRO healtarget");
 	SetBinding("ALT-CTRL-Z", "MACRO ALTCTRLZ");
+	
+	SetBinding("ALT-CTRL-\\", "MACRO followleader");
+	SetBinding("ALT-CTRL-;", "MACRO lifetap");
+	--SetBinding("ALT-CTRL-"", "MACRO ");
+	--SetBinding("ALT-CTRL-[", "MACRO");
+	--SetBinding("ALT-CTRL-]", "MACRO ");
+	--SetBinding("ALT-CTRL-,", "MACRO");
+	--SetBinding("ALT-CTRL-/", "MACRO ");
+	--SetBinding("ALT-CTRL-.", "MACRO ");
+
 	SetBinding("ALT-CTRL-SHIFT-A", "MACRO ALTCTRLSHIFTA");
 	SetBinding("ALT-CTRL-SHIFT-B", "MACRO ALTCTRLSHIFTB");
 	SetBinding("ALT-CTRL-SHIFT-C", "MACRO ALTCTRLSHIFTC");
@@ -159,10 +169,11 @@ SlashCmdList.KEEBINDINGS=function(msg, editBox)
 	SetBinding("ALT-CTRL-SHIFT-R", "MACRO ALTCTRLSHIFTR");
 	SetBinding("ALT-CTRL-SHIFT-S", "MACRO ALTCTRLSHIFTS");
 	SetBinding("ALT-CTRL-SHIFT-T", "MACRO chainhealleader");
-	SetBinding("ALT-CTRL-SHIFT-U", "MACRO ALTCTRLSHIFTU");
+	SetBinding("ALT-CTRL-SHIFT-U", "MACRO chainhealtarget");
 	SetBinding("ALT-CTRL-SHIFT-V", "MACRO ALTCTRLSHIFTV");
 	SetBinding("ALT-CTRL-SHIFT-W", "MACRO ALTCTRLSHIFTW");
 	SetBinding("ALT-CTRL-SHIFT-X", "MACRO ALTCTRLSHIFTX");
 	SetBinding("ALT-CTRL-SHIFT-Y", "MACRO chainhealtarget");
 	SetBinding("ALT-CTRL-SHIFT-Z", "MACRO ALTCTRLSHIFTZ");
+	print("Updated Kee keybindings");
 end

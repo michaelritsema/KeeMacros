@@ -31,7 +31,7 @@ local addMacro = function (macro_table,name,icon,macro_string,macro_type,feature
     );
 end
 --follow
-addMacro(Kee.Account.Macros, "ALTSHIFTBACKSLASH", "INV_MISC_QUESTIONMARK",
+addMacro(Kee.Account.Macros, "followleader", "INV_MISC_QUESTIONMARK",
 [[
 /follow {{LEADER_NAME}}
 ]],
@@ -40,7 +40,7 @@ nil
 
 -- reload ui
 addMacro(Kee.Account.Macros,
- "ALTSHIFTD",
+ "reloadui",
    "INV_MISC_QUESTIONMARK",
 
 [[
@@ -50,25 +50,14 @@ nil
 );
 
 addMacro(Kee.Account.Macros,
-
-  "petattack",
-    "INV_MISC_QUESTIONMARK",
+"petattack",
+"INV_MISC_QUESTIONMARK",
  
 [[
 #showtooltip
 /assist {{LEADER_NAME}}
 /petpassive
 /petattack
-]],
-  nil
-);
-
-addMacro(Kee.Account.Macros,
-
-  "ALTSHIFTQ",
-    "INV_MISC_QUESTIONMARK",
-[[
-/assist {{LEADER_NAME}}
 ]],
   nil
 );
@@ -88,8 +77,7 @@ addMacro(Kee.Account.Macros,
 
 --assist leader
 addMacro(Kee.Account.Macros,
-
- "ALTSHIFTC",
+ "assistleader",
   "INV_MISC_QUESTIONMARK",
 
 [[
@@ -100,7 +88,7 @@ addMacro(Kee.Account.Macros,
 );
 
 addMacro(Kee.Account.Macros,
-"mnt",
+"mount",
 "INV_MISC_QUESTIONMARK",
 [[
 #showtooltip
@@ -112,7 +100,7 @@ nil
 );
 
 addMacro(Kee.Account.Macros,
-"myfocus",
+"focusleaderstarget",
 "INV_MISC_QUESTIONMARK",
 [[
 #showtooltip
@@ -135,38 +123,24 @@ addMacro(Kee.Shaman.Macros,
 );
 
 addMacro(Kee.Shaman.Macros,
-    "ALTSHIFTLEFTBRACKET",
+    "armor",
     "INV_MISC_QUESTIONMARK",
 [[
 /cast Lightning Shield
 ]],
     1
-
 );
 
 addMacro(Kee.Shaman.Macros,
-    "ALTSHIFTRIGHTBRACKET",
+    "buffweapon",
     "INV_MISC_QUESTIONMARK",
 [[
 /cast Flametongue Weapon
 ]],
     1
-
 );
 
-addMacro(Kee.Shaman.Macros,
-    "ALTSHIFTX",
-    "INV_MISC_QUESTIONMARK",
-[[
-/cast Ghost Wolf
-]],
-    1
-
-);
-
-
---Heal Target
-addMacro(Kee.Shaman.Macros, "ALTSHIFTY", "INV_MISC_QUESTIONMARK",
+addMacro(Kee.Shaman.Macros, "healtarget", "INV_MISC_QUESTIONMARK",
 [[
 /assist {{LEADER_NAME}}
 /cast Healing Wave
@@ -186,28 +160,28 @@ addMacro(Kee.Shaman.Macros, "ns heal target", "INV_MISC_QUESTIONMARK",
 
 -- single spell for WOTLK
 addMacro(Kee.Shaman.Macros,
-    "ALTSHIFTB",
+    "totemset1",
     "INV_MISC_QUESTIONMARK",
 [[
 /assist {{LEADER_NAME}}
-/castsequence reset=combat Searing Totem
+/castsequence reset=combat Wrath of Air Totem,Strength of Earth Totem, Healing Stream Totem,Searing Totem
 ]],
     1
 );
 
 -- single spell for WOTLK
 addMacro(Kee.Shaman.Macros,
-    "ALTSHIFTN",
+    "totemset2",
     "INV_MISC_QUESTIONMARK",
 [[
 /assist {{LEADER_NAME}}
-/castsequence reset=combat Fire Nova Totem
+/castsequence reset=10s Tremor Totem, Grounding Totem, Healing Stream Totem, Searing Totem
 ]],
     1
 );
 
 addMacro(Kee.Shaman.Macros,
-    "shield leader",
+    "shieldleader",
     "INV_MISC_QUESTIONMARK",
 [[
 /target {{LEADER_NAME}}
@@ -227,7 +201,7 @@ addMacro(Kee.Shaman.Macros,
 );
 
 addMacro(Kee.Shaman.Macros,
-    "ALTSHIFTZ",
+    "eatdrink",
     "INV_MISC_QUESTIONMARK",
 [[
 /use Melon Juice
@@ -237,7 +211,7 @@ addMacro(Kee.Shaman.Macros,
 
 -- Lightning Bolt
 addMacro(Kee.Shaman.Macros,
-    "ALTSHIFTJ",
+    "lightningbolt",
     "INV_MISC_QUESTIONMARK",
 [[
 /assist {{LEADER_NAME}}
@@ -246,9 +220,8 @@ addMacro(Kee.Shaman.Macros,
     1
 );
 
---shock
 addMacro(Kee.Shaman.Macros,
-    "ALTSHIFTK",
+    "earthshock",
     "INV_MISC_QUESTIONMARK",
 [[
 /assist {{LEADER_NAME}}
@@ -257,9 +230,8 @@ addMacro(Kee.Shaman.Macros,
     1
 );
 
---flameshock
 addMacro(Kee.Shaman.Macros,
-    "ALTSHIFTW",
+    "flameshock",
     "INV_MISC_QUESTIONMARK",
 [[
 /assist {{LEADER_NAME}}
@@ -268,9 +240,8 @@ addMacro(Kee.Shaman.Macros,
     1
 );
 
---STARTATTACK
 addMacro(Kee.Shaman.Macros,
-    "ALTSHIFTF",
+    "startattacking",
     "INV_MISC_QUESTIONMARK",
 [[
 /assist {{LEADER_NAME}}
@@ -279,41 +250,18 @@ addMacro(Kee.Shaman.Macros,
     1
 );
 
-
 addMacro(Kee.Warlock.Macros,
-    "smite",
+    "singletarget",
     "INV_MISC_QUESTIONMARK",
 [[
 /assist {{LEADER_NAME}}
-/castsequence reset=target Corruption,Siphon Life,Unstable Affliction,Immolate
+/castsequence reset=target Corruption,Immolate,Shadow Bolt
 ]],
     1
 );
 
 addMacro(Kee.Warlock.Macros,
-    "seduce",
-    "INV_MISC_QUESTIONMARK",
-[[
-/target focus
-/party Seducing %t
-/cast Seduction
-]],
-    1
-);
-
-
-addMacro(Kee.Warlock.Macros,
-    "smite",
-    "INV_MISC_QUESTIONMARK",
-[[
-/assist {{LEADER_NAME}}
-/castsequence reset=target Corruption,Immolate
-]],
-    1
-);
-
-addMacro(Kee.Warlock.Macros,
-    "ALTSHIFTR",
+    "seed",
     "INV_MISC_QUESTIONMARK",
 [[
 /assist {{LEADER_NAME}}
@@ -323,7 +271,7 @@ addMacro(Kee.Warlock.Macros,
 );
 
 addMacro(Kee.Warlock.Macros,
-    "ALTSHIFTSEMICOLON",
+    "lifetap",
     "INV_MISC_QUESTIONMARK",
 [[
 /cast Life Tap
@@ -332,44 +280,17 @@ addMacro(Kee.Warlock.Macros,
 );
 
 addMacro(Kee.Warlock.Macros,
-    "ALTSHIFTK",
+    "shadowbolt",
     "INV_MISC_QUESTIONMARK",
 [[
 /assist {{LEADER_NAME}}
-/use 13
-/use 14
 /cast Shadow Bolt
 ]],
     1
 );
 
--- currently fire damage
 addMacro(Kee.Warlock.Macros,
-    "death coil",
-    "INV_MISC_QUESTIONMARK",
-[[
-/assist {{LEADER_NAME}}
-/castsequence reset=15 Corruption,Immolate, Incinerate
-]],
-    1
-);
-
--- TODO: We need Curse of the Elements by highest lock only
-
-
-addMacro(Kee.Warlock.Macros,
-    "TT Cast",
-    "INV_MISC_QUESTIONMARK",
-[[
-/assist {{LEADER_NAME}}
-/cast Amplify Curse
-/cast Curse of Doom
-]],
-    1
-);
-
-addMacro(Kee.Warlock.Macros,
-    "curse",
+    "curseofagony",
     "INV_MISC_QUESTIONMARK",
 [[
 /assist {{LEADER_NAME}}
@@ -387,7 +308,7 @@ addMacro(Kee.Warlock.Macros,
 );
 
 addMacro(Kee.Warlock.Macros,
-    "drain soul",
+    "drainsoul",
     "INV_MISC_QUESTIONMARK",
 [[
 /assist {{LEADER_NAME}}
@@ -398,7 +319,7 @@ addMacro(Kee.Warlock.Macros,
 
 
 addMacro(Kee.Warlock.Macros,
-    "ALTSHIFTZ",
+    "armor",
     "INV_MISC_QUESTIONMARK",
 [[
 /cast Fel Armor
@@ -406,6 +327,5 @@ addMacro(Kee.Warlock.Macros,
     1
 );
 
-addMacro(Kee.Tests.Macros,"A","INV_MISC_QUESTIONMARK",[[/run Fel print("A")]],1);
-
+--addMacro(Kee.Tests.Macros,"A","INV_MISC_QUESTIONMARK",[[/run Fel print("A")]],1);
 --lua GetBindingKey("command") SetBinding("KEY", "command") SetBindingSpell("KEY", "Spell Name") SetBindingItem("KEY", "itemname") SetBindingMacro("KEY", "macroname"|macroid)
