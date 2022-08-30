@@ -38,6 +38,30 @@ addMacro(Kee.Account.Macros, "followleader", "INV_MISC_QUESTIONMARK",
 nil
 );
 
+addMacro(Kee.Account.Macros, "followtarget", "INV_MISC_QUESTIONMARK",
+[[
+/assist {{LEADER_NAME}}
+/follow
+]],
+nil
+);
+
+addMacro(Kee.Shaman.Macros, "keeinit", "INV_MISC_QUESTIONMARK",
+[[
+/keeload account
+/keeload shaman
+]],
+nil
+);
+
+addMacro(Kee.Warlock.Macros, "keeinit", "INV_MISC_QUESTIONMARK",
+[[
+/keeload account
+/keeload warlock
+]],
+nil
+);
+
 -- reload ui
 addMacro(Kee.Account.Macros,
  "reloadui",
@@ -49,26 +73,25 @@ addMacro(Kee.Account.Macros,
 nil
 );
 
-addMacro(Kee.Account.Macros,
+addMacro(Kee.Warlock.Macros,
 "petattack",
 "INV_MISC_QUESTIONMARK",
  
 [[
-#showtooltip
 /assist {{LEADER_NAME}}
+/cast Demonic Empowerment
 /petpassive
 /petattack
 ]],
   nil
 );
 
-addMacro(Kee.Account.Macros,
+addMacro(Kee.Warlock.Macros,
 
  "petfollow",
   "INV_MISC_QUESTIONMARK",
 
 [[
-#showtooltip
 /petfollow
 /petpassive
 ]],
@@ -135,18 +158,11 @@ addMacro(Kee.Shaman.Macros,
     "buffweapon",
     "INV_MISC_QUESTIONMARK",
 [[
-/cast Flametongue Weapon
+/cast Earthliving Weapon
 ]],
     1
 );
 
-addMacro(Kee.Shaman.Macros, "healtarget", "INV_MISC_QUESTIONMARK",
-[[
-/assist {{LEADER_NAME}}
-/cast Healing Wave
-]],
-1
-);
 
 addMacro(Kee.Shaman.Macros, "ns heal target", "INV_MISC_QUESTIONMARK",
 [[
@@ -158,24 +174,31 @@ addMacro(Kee.Shaman.Macros, "ns heal target", "INV_MISC_QUESTIONMARK",
 1
 );
 
--- single spell for WOTLK
+
 addMacro(Kee.Shaman.Macros,
-    "totemset1",
+    "totems1",
     "INV_MISC_QUESTIONMARK",
 [[
-/assist {{LEADER_NAME}}
-/castsequence reset=combat Wrath of Air Totem,Strength of Earth Totem, Healing Stream Totem,Searing Totem
+/call of the Spirits
 ]],
     1
 );
 
--- single spell for WOTLK
+
 addMacro(Kee.Shaman.Macros,
-    "totemset2",
+    "totems2",
     "INV_MISC_QUESTIONMARK",
 [[
-/assist {{LEADER_NAME}}
-/castsequence reset=10s Tremor Totem, Grounding Totem, Healing Stream Totem, Searing Totem
+/cast Call of the Ancestors
+]],
+    1
+);
+
+addMacro(Kee.Shaman.Macros,
+    "totems3",
+    "INV_MISC_QUESTIONMARK",
+[[
+/cast Call of the Elements
 ]],
     1
 );
@@ -195,7 +218,18 @@ addMacro(Kee.Shaman.Macros,
     "INV_MISC_QUESTIONMARK",
 [[
 /target {{LEADER_NAME}}
-/cast Chain Heal
+/cast Tidal Force
+/castsequence reset=6 Riptide,Healing Wave, Chain Heal
+]],
+    1
+);
+
+addMacro(Kee.Shaman.Macros,
+    "healtarget",
+    "INV_MISC_QUESTIONMARK",
+[[
+/assist {{LEADER_NAME}}
+/castsequence reset=target/5 Chain Heal,Lesser Healing Wave
 ]],
     1
 );
@@ -231,6 +265,16 @@ addMacro(Kee.Shaman.Macros,
 );
 
 addMacro(Kee.Shaman.Macros,
+    "windshear",
+    "INV_MISC_QUESTIONMARK",
+[[
+/assist {{LEADER_NAME}}
+/cast Wind Shear
+]],
+    1
+);
+
+addMacro(Kee.Shaman.Macros,
     "flameshock",
     "INV_MISC_QUESTIONMARK",
 [[
@@ -255,7 +299,7 @@ addMacro(Kee.Warlock.Macros,
     "INV_MISC_QUESTIONMARK",
 [[
 /assist {{LEADER_NAME}}
-/castsequence reset=target Corruption,Immolate,Shadow Bolt
+/castsequence reset=24/target Corruption,Immolate,Incinerate,Incinerate,Incinerate,Incinerate,Incinerate
 ]],
     1
 );
@@ -317,6 +361,25 @@ addMacro(Kee.Warlock.Macros,
     1
 );
 
+addMacro(Kee.Warlock.Macros,
+    "createspellstone",
+    "INV_MISC_QUESTIONMARK",
+[[
+/cast Create Spellstone
+]],
+    1
+);
+
+addMacro(Kee.Warlock.Macros,
+    "usespellstone",
+    "INV_MISC_QUESTIONMARK",
+[[
+/use Master Spellstone
+/use 16
+]],
+    1
+);
+
 
 addMacro(Kee.Warlock.Macros,
     "armor",
@@ -326,6 +389,35 @@ addMacro(Kee.Warlock.Macros,
 ]],
     1
 );
+
+addMacro(Kee.Warlock.Macros,
+    "meta",
+    "INV_MISC_QUESTIONMARK",
+[[
+    /use 13
+    /use 14
+    /cast !Metamorphosis
+    /cast Immolation Aura(Demon)
+    /cast Shadow Cleave(Demon)
+    /cqs
+]],
+    1
+);
+
+addMacro(Kee.Warlock.Macros,
+    "felguard",
+    "INV_MISC_QUESTIONMARK",
+[[
+    /cast Fel Domination
+    /cast Summon Felguard
+    /cqs
+]],
+    1
+);
+
+
+
+
 
 --addMacro(Kee.Tests.Macros,"A","INV_MISC_QUESTIONMARK",[[/run Fel print("A")]],1);
 --lua GetBindingKey("command") SetBinding("KEY", "command") SetBindingSpell("KEY", "Spell Name") SetBindingItem("KEY", "itemname") SetBindingMacro("KEY", "macroname"|macroid)

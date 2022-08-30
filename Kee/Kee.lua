@@ -6,7 +6,6 @@ KeeSettings = {}
 KeeSettings.LEADER_NAME = "flogzero"
 KeeSettings.FEATURES = {}
 
-
 local DeletePlayerMacros = function() 
 	for i=120,138 do DeleteMacro(i) end
 end
@@ -112,7 +111,13 @@ end
 -- We could have separate sets
 SLASH_KEEBINDINGS1 = "/keebindings"
 SlashCmdList.KEEBINDINGS=function(msg, editBox)
-	print("Updating Kee keybindings");
+
+	Kee.ReloadBindings();
+	print("Updated Kee keybindings");
+end
+
+
+Kee.ReloadBindings = function() 
 	SetBinding("ALT-CTRL-A", "MACRO petattack");
 	SetBinding("ALT-CTRL-B", "MACRO totemset1");
 	SetBinding("ALT-CTRL-C", "MACRO ALTCTRLC");
@@ -125,7 +130,7 @@ SlashCmdList.KEEBINDINGS=function(msg, editBox)
 	SetBinding("ALT-CTRL-J", "MACRO ALTCTRLJ");
 	SetBinding("ALT-CTRL-K", "MACRO shadowbolt");
 	SetBinding("ALT-CTRL-L", "MACRO ALTCTRLL");
-	SetBinding("ALT-CTRL-M", "MACRO ALTCTRLM");
+	--SetBinding("ALT-CTRL-M", "MACRO ALTCTRLM"); map
 	SetBinding("ALT-CTRL-N", "MACRO ALTCTRLN");
 	SetBinding("ALT-CTRL-O", "MACRO ALTCTRLO");
 	SetBinding("ALT-CTRL-P", "MACRO ALTCTRLP");
@@ -134,7 +139,7 @@ SlashCmdList.KEEBINDINGS=function(msg, editBox)
 	SetBinding("ALT-CTRL-S", "MACRO ALTCTRLS");
 	SetBinding("ALT-CTRL-T", "MACRO healleader");
 	SetBinding("ALT-CTRL-U", "MACRO healtarget");
-	SetBinding("ALT-CTRL-V", "MACRO ALTCTRLV");
+	--SetBinding("ALT-CTRL-V", "MACRO ALTCTRLV");
 	SetBinding("ALT-CTRL-W", "MACRO ALTCTRLW");
 	SetBinding("ALT-CTRL-X", "MACRO ALTCTRLX");
 	SetBinding("ALT-CTRL-Y", "MACRO healtarget");
@@ -174,6 +179,11 @@ SlashCmdList.KEEBINDINGS=function(msg, editBox)
 	SetBinding("ALT-CTRL-SHIFT-W", "MACRO ALTCTRLSHIFTW");
 	SetBinding("ALT-CTRL-SHIFT-X", "MACRO ALTCTRLSHIFTX");
 	SetBinding("ALT-CTRL-SHIFT-Y", "MACRO chainhealtarget");
-	SetBinding("ALT-CTRL-SHIFT-Z", "MACRO ALTCTRLSHIFTZ");
-	print("Updated Kee keybindings");
+	SetBinding("ALT-CTRL-SHIFT-Z", "MACRO armor");
+	SetBinding("ALT-CTRL-SHIFT-\\", "MACRO followtarget");
+	SetBinding("ALT-CTRL-SHIFT-/", "MACRO keeinit");
+	SetBinding("ALT-CTRL-SHIFT-.", "MACRO reloadui");
 end
+
+-- init
+Kee.ReloadBindings();
