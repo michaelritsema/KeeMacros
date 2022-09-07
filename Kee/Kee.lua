@@ -87,28 +87,27 @@ SlashCmdList.DELETEMACROS= function(msg, editBox)
 end
 
 Kee.loadMacros = function(msg) 
-
 	if msg == "p" or msg == "Priest" then
 		print("Clearing player macros and loading priest.");
-		Kee.DeletePlayerMacros();
+		--Kee.DeletePlayerMacros();
 		table.foreach(Kee.Priest.Macros, Kee.LoadMacro);
 	end
 
 	if msg == "a" or msg =="Account" then
 		print("Clearing account macros and loading account");
-		Kee.DeleteAccountMacros();
+		--Kee.DeleteAccountMacros();
 		table.foreach(Kee.Account.Macros, Kee.LoadMacro);
 	end
 
 	if msg == "s" or msg =="Shaman" then
 		print("Clearing player macros and loading shaman");
-		Kee.DeletePlayerMacros();
+		--Kee.DeletePlayerMacros();
 		table.foreach(Kee.Shaman.Macros, Kee.LoadMacro);
 	end
 
 	if msg == "w" or msg =="Warlock" then
 		print("Clearing player macros and loading warlock");
-		Kee.DeletePlayerMacros();
+		--Kee.DeletePlayerMacros();
 		table.foreach(Kee.Warlock.Macros, Kee.LoadMacro);
 	end
 	print(format("Loaded Macros for %s",msg));
@@ -159,16 +158,13 @@ end
 -- We could have separate sets
 SLASH_KEEBINDINGS1 = "/kb"
 SlashCmdList.KEEBINDINGS=function(msg, editBox)
-
 	Kee.ReloadBindings();
-
 end
 
 
 Kee.ReloadBindings = function() 
 	print("Updated Kee keybindings");
 	LoadBindings(0);
-
 	SetBinding("G", "INTERACTTARGET");
 	SetBinding("BACKSPACE", "TOGGLEAUTORUN");
 	SetBinding("TOGGLEMAINMENU", "ESC");
