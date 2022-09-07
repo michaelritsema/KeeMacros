@@ -1,24 +1,55 @@
 Kee = {}
 
-
+--https://wowpedia.fandom.com/wiki/World_of_Warcraft_API
 
 KeeSettings = {}
 KeeSettings.LEADER_NAME = "flogzero"
 KeeSettings.FEATURES = {}
 
+local function OnEvent(self, event, ...)
+	local arg1 = ...;
+	--print(arg1);
+	if event == "ADDON_LOADED" and arg1=="Kee" then
+		print("Kee Addon Loaded");
+		Kee.ReloadBindings();
+	end
+end
+
+local f = CreateFrame("Frame", "KeeFrame");
+f:RegisterEvent("ADDON_LOADED");
+f:SetScript("OnEvent", OnEvent);
+
 local DeletePlayerMacros = function() 
-	for i=120,138 do DeleteMacro(i) end
+	a,p = GetNumMacros();
+	print(format("Deleting %i player macros",p));
+	for i=121,p+121-1 do
+		name,icon,body = GetMacroInfo(121);  
+		print(format("Deleting player macro: %s", name));
+		DeleteMacro(121);  
+	end
 end
 
 local DeleteAccountMacros = function() 
-	--p,a = GetNumMacros();
-	--print(format("p macros: %i, a macros: %i",p,a));
-	for i=1,120 do DeleteMacro(i) end
+	a,p = GetNumMacros();
+	print(format("Deleting %i account macros",a));
+	for i=0,a-1 do
+		name,icon,body = GetMacroInfo(1);  
+		print(format("Deleting account macro: %s", name));
+		DeleteMacro(1);   
+	end
 end
 
+-- id's change after each delete so we delete from front
+-- account macro starts at 0
+-- player macros start at 121
+--
 local DeleteAllMacros = function() 
-	DeleteAccountMacros()
-	DeletePlayerMacros()
+	a,p = GetNumMacros();
+	print(format("p macros: %i, a macros: %i",p,a));
+	DeleteAccountMacros();
+	DeletePlayerMacros();
+	a,p = GetNumMacros();
+	print(format("p macros: %i, a macros: %i",p,a));
 end
 
 local CreateOrReplaceMacro = function(name,icon,macro_string,macro_type) 
@@ -41,27 +72,33 @@ local LoadMacro = function(k,v)
 	--print(format("Loading macro:%s",v.name))
 end
 
-SLASH_KEELOAD1 = "/keeload"
+SLASH_DELETEMACROS1 = "/kd"
+SlashCmdList.DELETEMACROS= function(msg, editBox)
+	print("deleting all macros");
+	DeleteAllMacros();
+end
+
+SLASH_KEELOAD1 = "/kl"
 SlashCmdList.KEELOAD= function(msg, editBox)
-	if msg == "priest" then
+	if msg == "p" then
 		print("Clearing player macros and loading priest.");
 		DeletePlayerMacros();
 		table.foreach(Kee.Priest.Macros, LoadMacro);
 	end
 
-	if msg == "account" then
+	if msg == "a" then
 		print("Clearing account macros and loading account");
 		DeleteAccountMacros();
 		table.foreach(Kee.Account.Macros, LoadMacro);
 	end
 
-	if msg == "shaman" then
+	if msg == "s" then
 		print("Clearing player macros and loading shaman");
 		DeletePlayerMacros();
 		table.foreach(Kee.Shaman.Macros, LoadMacro);
 	end
 
-	if msg == "warlock" then
+	if msg == "w" then
 		print("Clearing player macros and loading warlock");
 		DeletePlayerMacros();
 		table.foreach(Kee.Warlock.Macros, LoadMacro);
@@ -109,17 +146,24 @@ SlashCmdList.BINDINGSPRINT = function(msg, editBox)
 end
 -- https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=f5d64f7f8f69c06ce0a50cb2ad2dd789
 -- We could have separate sets
-SLASH_KEEBINDINGS1 = "/keebindings"
+SLASH_KEEBINDINGS1 = "/kb"
 SlashCmdList.KEEBINDINGS=function(msg, editBox)
 
 	Kee.ReloadBindings();
-	print("Updated Kee keybindings");
+
 end
 
 
 Kee.ReloadBindings = function() 
+	print("Updated Kee keybindings");
+	--ClearBindings()
+	--LoadBindings(0);
+
+	SetBinding("G", "INTERACTTARGET");
+	SetBinding("BACKSPACE", "TOGGLEAUTORUN");
+	SetBinding("TOGGLEMAINMENU", "ESC");
 	SetBinding("ALT-CTRL-A", "MACRO petattack");
-	SetBinding("ALT-CTRL-B", "MACRO totemset1");
+	SetBinding("ALT-CTRL-B", "MACRO totems1");
 	SetBinding("ALT-CTRL-C", "MACRO ALTCTRLC");
 	SetBinding("ALT-CTRL-D", "MACRO petfollow");
 	SetBinding("ALT-CTRL-E", "MACRO ALTCTRLE");
@@ -128,17 +172,17 @@ Kee.ReloadBindings = function()
 	SetBinding("ALT-CTRL-H", "MACRO ALTCTRLH");
 	SetBinding("ALT-CTRL-I", "MACRO ALTCTRLI");
 	SetBinding("ALT-CTRL-J", "MACRO ALTCTRLJ");
-	SetBinding("ALT-CTRL-K", "MACRO shadowbolt");
+	SetBinding("ALT-CTRL-K", "MACRO singletarget");
 	SetBinding("ALT-CTRL-L", "MACRO ALTCTRLL");
 	--SetBinding("ALT-CTRL-M", "MACRO ALTCTRLM"); map
 	SetBinding("ALT-CTRL-N", "MACRO ALTCTRLN");
 	SetBinding("ALT-CTRL-O", "MACRO ALTCTRLO");
-	SetBinding("ALT-CTRL-P", "MACRO ALTCTRLP");
-	SetBinding("ALT-CTRL-Q", "MACRO ALTCTRLQ");
+	SetBinding("ALT-CTRL-P", "MACRO drainsoul");
+	SetBinding("ALT-CTRL-Q", "MACRO assistleader");
 	SetBinding("ALT-CTRL-R", "MACRO seed");
 	SetBinding("ALT-CTRL-S", "MACRO ALTCTRLS");
-	SetBinding("ALT-CTRL-T", "MACRO healleader");
-	SetBinding("ALT-CTRL-U", "MACRO healtarget");
+	SetBinding("ALT-CTRL-T", "MACRO chainhealleader");
+	SetBinding("ALT-CTRL-U", "MACRO shieldleader");
 	--SetBinding("ALT-CTRL-V", "MACRO ALTCTRLV");
 	SetBinding("ALT-CTRL-W", "MACRO ALTCTRLW");
 	SetBinding("ALT-CTRL-X", "MACRO ALTCTRLX");
@@ -156,8 +200,8 @@ Kee.ReloadBindings = function()
 
 	SetBinding("ALT-CTRL-SHIFT-A", "MACRO ALTCTRLSHIFTA");
 	SetBinding("ALT-CTRL-SHIFT-B", "MACRO ALTCTRLSHIFTB");
-	SetBinding("ALT-CTRL-SHIFT-C", "MACRO ALTCTRLSHIFTC");
-	SetBinding("ALT-CTRL-SHIFT-D", "MACRO ALTCTRLSHIFTD");
+	SetBinding("ALT-CTRL-SHIFT-C", "MACRO mount");
+	SetBinding("ALT-CTRL-SHIFT-D", "MACRO curseofagony");
 	SetBinding("ALT-CTRL-SHIFT-E", "MACRO ALTCTRLSHIFTE");
 	SetBinding("ALT-CTRL-SHIFT-F", "MACRO ALTCTRLSHIFTF");
 	SetBinding("ALT-CTRL-SHIFT-G", "MACRO ALTCTRLSHIFTG");
@@ -171,19 +215,20 @@ Kee.ReloadBindings = function()
 	SetBinding("ALT-CTRL-SHIFT-O", "MACRO ALTCTRLSHIFTO");
 	SetBinding("ALT-CTRL-SHIFT-P", "MACRO ALTCTRLSHIFTP");
 	SetBinding("ALT-CTRL-SHIFT-Q", "MACRO ALTCTRLSHIFTQ");
-	SetBinding("ALT-CTRL-SHIFT-R", "MACRO ALTCTRLSHIFTR");
+	SetBinding("ALT-CTRL-SHIFT-R", "MACRO burst");
 	SetBinding("ALT-CTRL-SHIFT-S", "MACRO ALTCTRLSHIFTS");
 	SetBinding("ALT-CTRL-SHIFT-T", "MACRO chainhealleader");
 	SetBinding("ALT-CTRL-SHIFT-U", "MACRO chainhealtarget");
 	SetBinding("ALT-CTRL-SHIFT-V", "MACRO ALTCTRLSHIFTV");
-	SetBinding("ALT-CTRL-SHIFT-W", "MACRO ALTCTRLSHIFTW");
-	SetBinding("ALT-CTRL-SHIFT-X", "MACRO ALTCTRLSHIFTX");
+	SetBinding("ALT-CTRL-SHIFT-W", "MACRO singletarget");
+	SetBinding("ALT-CTRL-SHIFT-X", "MACRO buffweapon");
 	SetBinding("ALT-CTRL-SHIFT-Y", "MACRO chainhealtarget");
 	SetBinding("ALT-CTRL-SHIFT-Z", "MACRO armor");
 	SetBinding("ALT-CTRL-SHIFT-\\", "MACRO followtarget");
 	SetBinding("ALT-CTRL-SHIFT-/", "MACRO keeinit");
 	SetBinding("ALT-CTRL-SHIFT-.", "MACRO reloadui");
+	SaveBindings(1);
 end
 
 -- init
-Kee.ReloadBindings();
+--Kee.ReloadBindings();

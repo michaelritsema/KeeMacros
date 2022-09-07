@@ -51,7 +51,7 @@ addMacro(Kee.Shaman.Macros, "keeinit", "INV_MISC_QUESTIONMARK",
 /keeload account
 /keeload shaman
 ]],
-nil
+1
 );
 
 addMacro(Kee.Warlock.Macros, "keeinit", "INV_MISC_QUESTIONMARK",
@@ -59,7 +59,7 @@ addMacro(Kee.Warlock.Macros, "keeinit", "INV_MISC_QUESTIONMARK",
 /keeload account
 /keeload warlock
 ]],
-nil
+1
 );
 
 -- reload ui
@@ -107,7 +107,7 @@ addMacro(Kee.Account.Macros,
 #showtooltip
 /assist {{LEADER_NAME}}
 ]],
-  nil
+nil
 );
 
 addMacro(Kee.Account.Macros,
@@ -149,7 +149,7 @@ addMacro(Kee.Shaman.Macros,
     "armor",
     "INV_MISC_QUESTIONMARK",
 [[
-/cast Lightning Shield
+/cast Water Shield
 ]],
     1
 );
@@ -179,7 +179,7 @@ addMacro(Kee.Shaman.Macros,
     "totems1",
     "INV_MISC_QUESTIONMARK",
 [[
-/call of the Spirits
+/cast Call of the Spirits
 ]],
     1
 );
@@ -284,14 +284,14 @@ addMacro(Kee.Shaman.Macros,
     1
 );
 
-addMacro(Kee.Shaman.Macros,
+addMacro(Kee.Account.Macros,
     "startattacking",
     "INV_MISC_QUESTIONMARK",
 [[
 /assist {{LEADER_NAME}}
 /startattack
 ]],
-    1
+    nil
 );
 
 addMacro(Kee.Warlock.Macros,
@@ -391,15 +391,27 @@ addMacro(Kee.Warlock.Macros,
 );
 
 addMacro(Kee.Warlock.Macros,
-    "meta",
+    "burst",
     "INV_MISC_QUESTIONMARK",
 [[
-    /use 13
-    /use 14
-    /cast !Metamorphosis
-    /cast Immolation Aura(Demon)
-    /cast Shadow Cleave(Demon)
-    /cqs
+/use 13
+/use 14
+/cast !Metamorphosis
+/cast Immolation Aura(Demon)
+/cast Shadow Cleave(Demon)
+/cqs
+]],
+    1
+);
+
+addMacro(Kee.Shaman.Macros,
+    "burst",
+    "INV_MISC_QUESTIONMARK",
+[[
+/use 13
+/use 14
+/cast Heroism
+/cqs
 ]],
     1
 );
@@ -408,9 +420,9 @@ addMacro(Kee.Warlock.Macros,
     "felguard",
     "INV_MISC_QUESTIONMARK",
 [[
-    /cast Fel Domination
-    /cast Summon Felguard
-    /cqs
+/cast Fel Domination
+/cast Summon Felguard
+/cqs
 ]],
     1
 );
