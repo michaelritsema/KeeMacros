@@ -83,7 +83,7 @@ addMacro(Kee.Warlock.Macros,
 /petpassive
 /petattack
 ]],
-  nil
+  1
 );
 
 addMacro(Kee.Warlock.Macros,
@@ -95,7 +95,7 @@ addMacro(Kee.Warlock.Macros,
 /petfollow
 /petpassive
 ]],
-  nil
+  1
 );
 
 --assist leader

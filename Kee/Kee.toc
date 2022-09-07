@@ -1,8 +1,8 @@
-## Interface: 40300
-## Title : kee
+## Interface: 30400
+## Title : Kee
 ## Notes: Addon for Kee
 ## Author: michaelritsema@gmail.coom
-## Version: 1.0
+## Version: 1.2
 ## Dependencies: 
 ## SavedVariablesPerCharacter: KeeSettings
 Kee.lua

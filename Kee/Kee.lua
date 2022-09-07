@@ -6,20 +6,28 @@ KeeSettings = {}
 KeeSettings.LEADER_NAME = "flogzero"
 KeeSettings.FEATURES = {}
 
-local function OnEvent(self, event, ...)
+
+Kee.OnEvent = function(self, event, ...)
 	local arg1 = ...;
 	--print(arg1);
-	if event == "ADDON_LOADED" and arg1=="Kee" then
+	--ADDON_LOADED" --and arg1=="Kee"
+	if event == "PLAYER_ENTERING_WORLD"  then
 		print("Kee Addon Loaded");
+		local class = UnitClass("player");
+		print(format("Loading settings for account"));
+		Kee.loadMacros("Account");
+		print(format("Loading settings for class: %s", class));
+		Kee.loadMacros(class);
 		Kee.ReloadBindings();
 	end
 end
 
-local f = CreateFrame("Frame", "KeeFrame");
-f:RegisterEvent("ADDON_LOADED");
-f:SetScript("OnEvent", OnEvent);
+Kee.frame = CreateFrame("Frame", "KeeFrame");
+Kee.frame:RegisterEvent("ADDON_LOADED");
+Kee.frame:RegisterEvent("PLAYER_ENTERING_WORLD");
+Kee.frame:SetScript("OnEvent", Kee.OnEvent);
 
-local DeletePlayerMacros = function() 
+Kee.DeletePlayerMacros = function() 
 	a,p = GetNumMacros();
 	print(format("Deleting %i player macros",p));
 	for i=121,p+121-1 do
@@ -29,7 +37,7 @@ local DeletePlayerMacros = function()
 	end
 end
 
-local DeleteAccountMacros = function() 
+Kee.DeleteAccountMacros = function() 
 	a,p = GetNumMacros();
 	print(format("Deleting %i account macros",a));
 	for i=0,a-1 do
@@ -43,23 +51,23 @@ end
 -- account macro starts at 0
 -- player macros start at 121
 --
-local DeleteAllMacros = function() 
+Kee.DeleteAllMacros = function() 
 	a,p = GetNumMacros();
 	print(format("p macros: %i, a macros: %i",p,a));
-	DeleteAccountMacros();
-	DeletePlayerMacros();
+	Kee.DeleteAccountMacros();
+	Kee.DeletePlayerMacros();
 	a,p = GetNumMacros();
 	print(format("p macros: %i, a macros: %i",p,a));
 end
 
-local CreateOrReplaceMacro = function(name,icon,macro_string,macro_type) 
-	print(format("Loading macro  %s", name));
+Kee.CreateOrReplaceMacro = function(name,icon,macro_string,macro_type) 
+	print(format("Creating macro  %s", name));
 	macro_string = gsub(macro_string, "{{LEADER_NAME}}", KeeSettings.LEADER_NAME)
 	DeleteMacro(name);
 	CreateMacro(name, icon, macro_string, macro_type);
 end
 
-local LoadMacro = function(k,v)
+Kee.LoadMacro = function(k,v)
 	if v.feature then
 		print(format("Found feature %s,checking if enabled", v.feature.feature_name));
 		if KeeSettings.FEATURES[v.feature.feature_name] then
@@ -68,44 +76,47 @@ local LoadMacro = function(k,v)
 			return
 		end
 	end
-	CreateOrReplaceMacro(v.name,v.icon,v.macro_string,v.macro_type)
+	Kee.CreateOrReplaceMacro(v.name,v.icon,v.macro_string,v.macro_type)
 	--print(format("Loading macro:%s",v.name))
 end
 
 SLASH_DELETEMACROS1 = "/kd"
 SlashCmdList.DELETEMACROS= function(msg, editBox)
 	print("deleting all macros");
-	DeleteAllMacros();
+	Kee.DeleteAllMacros();
+end
+
+Kee.loadMacros = function(msg) 
+
+	if msg == "p" or msg == "Priest" then
+		print("Clearing player macros and loading priest.");
+		Kee.DeletePlayerMacros();
+		table.foreach(Kee.Priest.Macros, Kee.LoadMacro);
+	end
+
+	if msg == "a" or msg =="Account" then
+		print("Clearing account macros and loading account");
+		Kee.DeleteAccountMacros();
+		table.foreach(Kee.Account.Macros, Kee.LoadMacro);
+	end
+
+	if msg == "s" or msg =="Shaman" then
+		print("Clearing player macros and loading shaman");
+		Kee.DeletePlayerMacros();
+		table.foreach(Kee.Shaman.Macros, Kee.LoadMacro);
+	end
+
+	if msg == "w" or msg =="Warlock" then
+		print("Clearing player macros and loading warlock");
+		Kee.DeletePlayerMacros();
+		table.foreach(Kee.Warlock.Macros, Kee.LoadMacro);
+	end
+	print(format("Loaded Macros for %s",msg));
 end
 
 SLASH_KEELOAD1 = "/kl"
 SlashCmdList.KEELOAD= function(msg, editBox)
-	if msg == "p" then
-		print("Clearing player macros and loading priest.");
-		DeletePlayerMacros();
-		table.foreach(Kee.Priest.Macros, LoadMacro);
-	end
-
-	if msg == "a" then
-		print("Clearing account macros and loading account");
-		DeleteAccountMacros();
-		table.foreach(Kee.Account.Macros, LoadMacro);
-	end
-
-	if msg == "s" then
-		print("Clearing player macros and loading shaman");
-		DeletePlayerMacros();
-		table.foreach(Kee.Shaman.Macros, LoadMacro);
-	end
-
-	if msg == "w" then
-		print("Clearing player macros and loading warlock");
-		DeletePlayerMacros();
-		table.foreach(Kee.Warlock.Macros, LoadMacro);
-	end
-
-
-	print("Loaded Macros");
+	Kee.loadMacros(msg)
 end
 
 SLASH_SETLEADER1 = "/setleader"
@@ -156,8 +167,7 @@ end
 
 Kee.ReloadBindings = function() 
 	print("Updated Kee keybindings");
-	--ClearBindings()
-	--LoadBindings(0);
+	LoadBindings(0);
 
 	SetBinding("G", "INTERACTTARGET");
 	SetBinding("BACKSPACE", "TOGGLEAUTORUN");
@@ -229,6 +239,3 @@ Kee.ReloadBindings = function()
 	SetBinding("ALT-CTRL-SHIFT-.", "MACRO reloadui");
 	SaveBindings(1);
 end
-
--- init
---Kee.ReloadBindings();
